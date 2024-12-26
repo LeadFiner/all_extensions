@@ -1,16 +1,19 @@
 {
-    "name": "all_extensions",
-    "description": "",
+    "name": "all_in_one",
+    "description": "All useful extension in a single package.",
     "dependencies": {
+        "neopixel": "github:lzty634158/pxt-neopixel",
+        "SuperBitLibV2": "github:YahboomTechnology/SuperBitLibV2.git",
+        "module_world_color": "github:YahboomTechnology/module_world_color",
+        "tm1650": "github:YahboomTechnology/tm1650",
+        "GHBit": "github:lzty634158/GHBit",
+        "SuperBit": "github:lzty634158/SuperBit",
         "core": "*",
         "radio": "*",
         "microphone": "*"
     },
     "files": [
-        "main.blocks",
-        "main.ts",
-        "README.md",
-        "all_extensions.ts"
+        "README.md"
     ],
     "testFiles": [
         "test.ts"
