@@ -1,7 +1,7 @@
 // Extend some existing extensions.
 
 namespace GHBit {
-    //% blockId=GHBit_Rocker block="RockerX|value %value"
+    //% blockId=GHBit_RockerX block="RockerX"
     //% weight=96
     //% blockGap=10
     //% color="#C814B8"
@@ -10,7 +10,7 @@ namespace GHBit {
         return pins.analogReadPin(AnalogPin.P1);
     }
     
-    //% blockId=GHBit_Rocker block="RockerX|value %value"
+    //% blockId=GHBit_RockerY block="RockerY"
     //% weight=96
     //% blockGap=10
     //% color="#C814B8"
