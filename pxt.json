@@ -12,6 +12,7 @@
         "microphone": "*"
     },
     "files": [
+        "extended.ts",
         "README.md"
     ],
     "testFiles": [
