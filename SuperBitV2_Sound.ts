@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (C): 2010-2019, Shenzhen Yahboom Tech
 modified from liusen
 load dependency
@@ -7,7 +7,21 @@ load dependency
 
 //% color="#ECA40D" weight=30 icon="\uf135"
 namespace SuperBitV2_Sound {
-   
+    export enum mwDigitalNum {
+        //% blockId="P4P6" block="P4P6"
+        P4P6 = 1,
+        //% blockId="P1P2" block="P1P2"
+        P1P2 = 2,
+        //% blockId="P0P3" block="P0P3"
+        P0P3 = 3,
+        //% blockId="P10P9" block="P10P9"
+        P10P9 = 4,
+        //% blockId="P7P8" block="P7P8"
+        P7P8 = 5,
+        //% blockId="P5P11" block="P5P11"
+        P5P11 = 6
+    }
+    
     export enum enMusic {
 
         dadadum = 0,

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (C): 2010-2019, Shenzhen Yahboom Tech
 modified from liusen
 load dependency
@@ -16,6 +16,11 @@ namespace SuperBitV2_Motor {
     const SUBADR1 = 0x02
     const SUBADR2 = 0x03
     const SUBADR3 = 0x04
+
+    const LED0_ON_L = 0x06
+    const LED0_ON_H = 0x07
+    const LED0_OFF_L = 0x08
+    const LED0_OFF_H = 0x09
 
     const PRESCALE = 0xFE
 
@@ -249,6 +254,6 @@ namespace SuperBitV2_Motor {
         //   - min (0°)   =>  500 us =>  500*4096/20000 (=102).
         //   - max (270°) => 2500 us => 2500*4096/20000 (=512).
         let pwm = Math.map(value, 0, 270, 102, 512);
-        SuperBitV2.setPwm(num, 0, pwm);
+        setPwm(num, 0, pwm);
     }
 }
