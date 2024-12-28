@@ -260,20 +260,20 @@ namespace GamePad {
             return false;
     }
     
-    //% blockId=GamePad_RockerX block="RockerX"
+    //% blockId=GamePad_RockerV block="RockerV"
     //% weight=96
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
-    export function RockerX() {
-        return pins.analogReadPin(AnalogPin.P1);
+    export function RockerV() {
+        return Math.map(pins.analogReadPin(AnalogPin.P1), 0, 1023, 9, -9);
     }
     
-    //% blockId=GamePad_RockerY block="RockerY"
+    //% blockId=GamePad_RockerH block="RockerH"
     //% weight=96
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
-    export function RockerY() {
-        return pins.analogReadPin(AnalogPin.P2);
+    export function RockerH() {
+        return Math.map(pins.analogReadPin(AnalogPin.P2), 0, 1023, 9, -9);
     }
     
     //% blockId=GamePad_Button block="Button|num %num|value %value"
