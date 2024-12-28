@@ -5,7 +5,9 @@ load dependency
 "SuperBitV2": "file:../pxt-SuperBitV2"
 */
 
-//% color="#ECA40D" weight=30 icon="\uf135"
+// Updated: LeadFiner.
+
+//% color="#ECA40D" weight=30 icon="\uf0eb"
 namespace SuperBitV2_LED {
 
     let rgbStrip: neopixel.Strip;

@@ -5,7 +5,9 @@ load dependency
 "SuperBitV2": "file:../pxt-SuperBitV2"
 */
 
-//% color="#ECA40D" weight=30 icon="\uf135"
+// Updated: LeadFiner.
+
+//% color="#0DA4EC" weight=30 icon="\uf028"
 namespace SuperBitV2_Sound {
     export enum mwDigitalNum {
         //% blockId="P4P6" block="P4P6"

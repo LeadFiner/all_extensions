@@ -5,7 +5,9 @@ load dependency
 "SuperBitV2": "file:../pxt-SuperBitV2"
 */
 
-//% color="#ECA40D" weight=30 icon="\uf135"
+// Updated: LeadFiner.
+
+//% color="#C814B8" weight=25 icon="\uf25a"
 namespace SuperBitV2_Sensor {
 
     export enum mwDigitalNum {
