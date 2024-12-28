@@ -265,7 +265,7 @@ namespace GamePad {
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function RockerV() {
-        return Math.map(pins.analogReadPin(AnalogPin.P1), 0, 1023, 9, -9);
+        return Math.map(pins.analogReadPin(AnalogPin.P1), 0, 1023, 255, -255);
     }
     
     //% blockId=GamePad_RockerH block="RockerH"
@@ -273,7 +273,7 @@ namespace GamePad {
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function RockerH() {
-        return Math.map(pins.analogReadPin(AnalogPin.P2), 0, 1023, 9, -9);
+        return Math.map(pins.analogReadPin(AnalogPin.P2), 0, 1023, 255, -255);
     }
     
     //% blockId=GamePad_Button block="Button|num %num|value %value"
