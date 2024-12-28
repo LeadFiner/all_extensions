@@ -5,8 +5,10 @@ load dependency
 "GHBit": "file:../pxt-ghbit"
 */
 
+// Updated: LeadFiner.
+
 //% color="#C814B8" weight=20 icon="\uf11b"
-namespace GHBit {
+namespace eGHBit {
 
     const PCA9685_ADD = 0x41;
     const MODE1 = 0x00;
@@ -220,37 +222,13 @@ namespace GHBit {
      * *****************************************************************
      * @param index
      */
-    
-    //% blockId=GHBit_RGB_Program block="RGB_Program"
-    //% weight=99
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB_Program(): neopixel.Strip {
-         
-        if (!yahStrip) {
-            yahStrip = neopixel.create(DigitalPin.P4, 4, NeoPixelMode.RGB);
-        }
-        return yahStrip;  
-    }  
-       
-    //% blockId=GHBit_RGB_Program_Close block="RGB_Program_Close"
-    //% weight=98
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function RGB_Program_Close(): void {
-        pins.digitalWritePin(DigitalPin.P4, 0);
-        GHBit.RGB_Program().clear();
-        GHBit.RGB_Program().show();
-    }
-    
-    //% blockId=GHBit_Min_Motor_Shake block="Min_Motor_Shake|value %value"
+        
+    //% blockId=eGHBit_Vibration block="Vibration|value %value"
     //% weight=97
     //% blockGap=10
     //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Min_Motor_Shake(value: Motorshock): void {
+    export function Vibration(value: Motorshock): void {
         switch (value) {
             case Motorshock.ON: {
               setPwm(0, 0, 4095);
@@ -263,7 +241,7 @@ namespace GHBit {
         }               
     }
     
-    //% blockId=GHBit_Rocker block="Rocker|value %value"
+    //% blockId=eGHBit_Rocker block="Rocker|value %value"
     //% weight=96
     //% blockGap=10
     //% color="#C814B8"
@@ -304,10 +282,27 @@ namespace GHBit {
             return true;
         else
             return false;
-
     }
     
-    //% blockId=GHBit_Button block="Button|num %num|value %value"
+    //% blockId=eGHBit_RockerX block="RockerX"
+    //% weight=96
+    //% blockGap=10
+    //% color="#0080FF"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
+    export function RockerX() {
+        return pins.analogReadPin(AnalogPin.P1);
+    }
+    
+    //% blockId=eGHBit_RockerY block="RockerY"
+    //% weight=96
+    //% blockGap=10
+    //% color="#0080FF"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
+    export function RockerY() {
+        return pins.analogReadPin(AnalogPin.P2);
+    }
+    
+    //% blockId=eGHBit_Button block="Button|num %num|value %value"
     //% weight=95
     //% blockGap=10
     //% color="#C814B8"
@@ -358,10 +353,8 @@ namespace GHBit {
         }
         return temp;         
     }
-    
-
-    
-    //% blockId=GHBit_Music_Handle block="Music_Handle|%index"
+        
+    //% blockId=eGHBit_Music_Handle block="Music_Handle|%index"
     //% weight=92
     //% blockGap=10
     //% color="#C814B8"
@@ -391,238 +384,7 @@ namespace GHBit {
         }
     }
     
-    //% blockId=GHBit_Servo_Handle block="Servo_Handle|num %num|value %value"
-    //% weight=91
-    //% blockGap=10
-    //% color="#C814B8"
-    //% num.min=1 num.max=4 value.min=0 value.max=180
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
-    export function Servo_Handle(num: enServo, value: number): void {
-
-        // 50hz: 20,000 us
-        let us = (value * 1800 / 180 + 600); // 0.6 ~ 2.4
-        let pwm = us * 4096 / 20000;
-        setPwm(num + 8, 0, pwm);
-
-    }
-        
-    //% blockId=GHBit_Ultrasonic_Handle block="ultrasonic return distance(cm)"
-    //% color="#C814B8"
-    //% weight=90
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Ultrasonic_Handle(): number {
-
-      // send pulse
-      pins.setPull(DigitalPin.P12, PinPullMode.PullNone)
-      pins.digitalWritePin(DigitalPin.P12, 0)
-      control.waitMicros(4)
-      pins.digitalWritePin(DigitalPin.P12, 1)
-      control.waitMicros(15)
-      pins.digitalWritePin(DigitalPin.P12, 0)
-      const d = pins.pulseIn(DigitalPin.P11, PulseValue.High, 500 * 40);
-      return Math.idiv(d, 40)
-    }
-
-    //% blockId=GHBit_Ultrasonic_Handle_V2 block="ultrasonic_V2 return distance(cm)"
-    //% color="#C814B8"
-    //% weight=90
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Ultrasonic_Handle_V2(): number {
-
-      // send pulse
-      pins.setPull(DigitalPin.P12, PinPullMode.PullNone)
-      pins.digitalWritePin(DigitalPin.P12, 0)
-      control.waitMicros(4)
-      pins.digitalWritePin(DigitalPin.P12, 1)
-      control.waitMicros(15)
-      pins.digitalWritePin(DigitalPin.P12, 0)
-      const d = pins.pulseIn(DigitalPin.P11, PulseValue.High, 500 * 58);
-      return Math.idiv(d, 58)
-    }
-
-    //% blockId=GHBit_RGB_Colorful block="RGB_Colorful|%value"
-    //% weight=89
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB_Colorful(value: enColor): void {
-        switch (value) {
-            case enColor.OFF: {
-              setPwm(15, 0, 0);
-              setPwm(14, 0, 0);
-              setPwm(13, 0, 0);
-              break;
-            }
-            case enColor.RED: {
-              setPwm(15, 0, 4095);
-              setPwm(14, 0, 0);
-              setPwm(13, 0, 0);
-              break;
-            }
-            case enColor.GREEN: {
-              setPwm(15, 0, 0);
-              setPwm(14, 0, 4095);
-              setPwm(13, 0, 0);
-              break;
-            }
-            case enColor.BLUE: {
-              setPwm(15, 0, 0);
-              setPwm(14, 0, 0);
-              setPwm(13, 0, 4095);
-              break;
-            }
-            case enColor.WHITE: {
-              setPwm(15, 0, 4095);
-              setPwm(14, 0, 4095);
-              setPwm(13, 0, 4095);
-              break;
-            }
-            case enColor.CYAN: {
-              setPwm(15, 0, 0);
-              setPwm(14, 0, 4095);
-              setPwm(13, 0, 4095);
-              break;
-            }
-            case enColor.PINKISH: {
-              setPwm(15, 0, 4095);
-              setPwm(14, 0, 0);
-              setPwm(13, 0, 4095);
-              break;
-            }
-            case enColor.YELLOW: {
-              setPwm(15, 0, 4095);
-              setPwm(14, 0, 4095);
-              setPwm(13, 0, 0);
-              break;
-            }
-        }
-    }
-    
-    //% blockId=GHBit_Stepper_Motor block="Stepper_Motor|value %value|value1 %value1"
-    //% weight=88
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Stepper_Motor(value: STepper, value1: speed): void {
-    	  let a = 64;  
-        switch (value) {
-            case STepper.Stepper: { 
-            	while( a )    
-            	{     	             
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 4095);
-                setPwm(3, 0, 0);
-                setPwm(4, 0, 0);
-                control.waitMicros(value1);                       
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                setPwm(3, 0, 4095);
-                setPwm(4, 0, 0);
-                control.waitMicros(value1);                         
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 0);
-                setPwm(3, 0, 4095);
-                setPwm(4, 0, 4095);
-                control.waitMicros(value1);              
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                setPwm(3, 0, 0);
-                setPwm(4, 0, 4095);
-                control.waitMicros(value1); 
-                a--;
-              }  
-                a = 0;
-              break;
-            }
-            case STepper.Stepper0: {
-            	while( a )
-            	{ 
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 0);
-                setPwm(3, 0, 4095);
-                setPwm(4, 0, 4095);
-                control.waitMicros(value1);                       
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                setPwm(3, 0, 4095);
-                setPwm(4, 0, 0);
-                control.waitMicros(value1);                         
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 4095);
-                setPwm(3, 0, 0);
-                setPwm(4, 0, 0);
-                control.waitMicros(value1);              
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                setPwm(3, 0, 0);
-                setPwm(4, 0, 4095);
-                control.waitMicros(value1);  
-                 a--;
-              }
-                a = 0;
-              break;
-            }
-            case STepper.Stepper1: {
-              setPwm(1, 0, 0);
-              setPwm(2, 0, 0);
-              setPwm(3, 0, 0);
-              setPwm(4, 0, 0);
-              break;
-            }               
-        } 
-    }  
-    //% blockId=GHBit_Min_Motor block="Min_Motor|value %value"
-    //% weight=87
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Min_Motor(value: Angle): void {
-        switch (value) {
-            case Angle.Angle0: {
-              setPwm(7, 0, 0);
-              setPwm(8, 0, 0);
-              break;
-            }
-            case Angle.Angle1: {
-              setPwm(7, 0, 600);
-              setPwm(8, 0, 0);
-              break;
-            }
-            case Angle.Angle2: {
-              setPwm(7, 0, 1200);
-              setPwm(8, 0, 0);
-              break;
-            }
-            case Angle.Angle3: {
-              setPwm(7, 0, 1800);
-              setPwm(8, 0, 0);
-              break;
-            }
-            case Angle.Angle4: {
-              setPwm(7, 0, 2400);
-              setPwm(8, 0, 0);
-              break;
-            }
-            case Angle.Angle5: {
-              setPwm(7, 0, 3000);
-              setPwm(8, 0, 0);
-              break;
-            }
-            case Angle.Angle6: {
-              setPwm(7, 0, 3600);
-              setPwm(8, 0, 0);
-              break;
-            }
-            case Angle.Angle7: {
-              setPwm(7, 0, 4095);
-              setPwm(8, 0, 0);
-              break;
-            }
-        }               
-    }   
-    //% blockId=GHBit_Rotate block="Rotate|value %value"
+    //% blockId=eGHBit_Rotate block="Rotate|value %value"
     //% weight=86
     //% blockGap=10
     //% color="#C814B8"
@@ -692,13 +454,12 @@ namespace GHBit {
         return a;
     }
     
-    //% blockId=GHBit_Beam block="Beam|value %value"
+    //% blockId=eGHBit_Beam block="Beam|value %value"
     //% weight=85
     //% blockGap=10
     //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function Beam(value: Beamstate): boolean {
-
         pins.setPull(DigitalPin.P10, PinPullMode.PullUp);
         let x = pins.analogReadPin(AnalogPin.P10);
         if (x < 700) // 亮
@@ -721,6 +482,4 @@ namespace GHBit {
             }
         }
     }
-    
-    
 }

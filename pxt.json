@@ -9,7 +9,7 @@
     },
     "files": [
         "tm1650.ts",
-        "GHBit.ts",
+        "eGHBit.ts",
         "module_world_color.ts",
         "SuperBitLibV2.ts",
         "extended.ts",
