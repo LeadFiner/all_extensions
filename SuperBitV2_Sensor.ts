@@ -8,51 +8,6 @@ load dependency
 //% color="#ECA40D" weight=30 icon="\uf135"
 namespace SuperBitV2_Sensor {
 
-    export enum enPos { 
-        //% blockId="forward" block="forward"
-        forward = 1,
-        //% blockId="reverse" block="reverse"
-        reverse = 2,
-        //% blockId="stop" block="stop"
-        stop = 3
-    }
-
-    export enum enTurns {
-        //% blockId="T1B4" block="1/4"
-        T1B4 = 90,
-        //% blockId="T1B2" block="1/2"
-        T1B2 = 180,
-        //% blockId="T1B0" block="1"
-        T1B0 = 360,
-        //% blockId="T2B0" block="2"
-        T2B0 = 720,
-        //% blockId="T3B0" block="3"
-        T3B0 = 1080,
-        //% blockId="T4B0" block="4"
-        T4B0 = 1440,
-        //% blockId="T5B0" block="5"
-        T5B0 = 1800
-    }
-
-    function i2cwrite(addr: number, reg: number, value: number) {
-        let buf = pins.createBuffer(2)
-        buf[0] = reg
-        buf[1] = value
-        pins.i2cWriteBuffer(addr, buf)
-    }
-
-    function i2ccmd(addr: number, value: number) {
-        let buf = pins.createBuffer(1)
-        buf[0] = value
-        pins.i2cWriteBuffer(addr, buf)
-    }
-
-    function i2cread(addr: number, reg: number) {
-        pins.i2cWriteNumber(addr, reg, NumberFormat.UInt8BE);
-        let val = pins.i2cReadNumber(addr, NumberFormat.UInt8BE);
-        return val;
-    }
-
     export enum mwDigitalNum {
         //% blockId="P4P6" block="P4P6"
         P4P6 = 1,
@@ -443,4 +398,129 @@ namespace SuperBitV2_Sensor {
         return now_state == value;
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // For color detection.
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    const COLOR_ADD = 0X53;
+    const COLOR_REG = 0x00;
+    const COLOR_R = 0X10;
+    const COLOR_G = 0X0D;
+    const COLOR_B = 0x13;
+
+    let initialized = false;
+    let val_red = 0;
+    let val_green = 0;
+    let val_blue = 0;
+	
+    export enum enGetRGB {
+        //% blockId="GetValueR" block="GetValueR"
+        GetValueR = 0,
+        //% blockId="GetValueG" block="GetValueG"
+        GetValueG = 1,
+        //% blockId="GetValueB" block="GetValueB"
+        GetValueB = 2
+    }
+	
+    function i2cWriteData(addr: number, reg: number, value: number) {
+        let buf = pins.createBuffer(2);
+        buf[0] = reg;
+        buf[1] = value;
+        pins.i2cWriteBuffer(addr, buf);
+    }
+
+    function setRegConfig(): void {
+        i2cWriteData(COLOR_ADD, COLOR_REG, 0X06);
+        i2cWriteData(COLOR_ADD, 0X04, 0X41);
+        i2cWriteData(COLOR_ADD, 0x05, 0x01);
+    }
+
+    function initColorI2C(): void {
+        setRegConfig();
+        initialized = true;
+    }
+
+    function GetRGB(): void {
+        let buff_R = pins.createBuffer(2);
+        let buff_G = pins.createBuffer(2);
+        let buff_B = pins.createBuffer(2);
+
+        pins.i2cWriteNumber(COLOR_ADD, COLOR_R, NumberFormat.UInt8BE);
+        buff_R = pins.i2cReadBuffer(COLOR_ADD, 2);
+
+        pins.i2cWriteNumber(COLOR_ADD, COLOR_G, NumberFormat.UInt8BE);
+        buff_G = pins.i2cReadBuffer(COLOR_ADD, 2);
+
+        pins.i2cWriteNumber(COLOR_ADD, COLOR_B, NumberFormat.UInt8BE);
+        buff_B = pins.i2cReadBuffer(COLOR_ADD, 2);
+
+        let Red = (buff_R[1] & 0xff) << 8 | (buff_R[0] & 0xff);
+        let Green = (buff_G[1] & 0xff) << 8 | (buff_G[0] & 0xff);
+        let Blue = (buff_B[1] & 0xff) << 8 | (buff_B[0] & 0xff);
+
+        if (Red > 4500) Red = 2300;
+        if (Green > 7600) Green = 4600;
+        if (Blue > 4600) Blue = 2700;
+
+        val_red = Math.map(Red, 0, 2300, 0, 255);
+        val_green = Math.map(Green, 0, 4600, 0, 255);
+        val_blue = Math.map(Blue, 0, 2700, 0, 255);
+
+        //化成整数
+        val_red = Math.floor(val_red)
+        val_green = Math.floor(val_green)
+        val_blue = Math.floor(val_blue)
+
+        if (val_red > 255) val_red = 255;
+        if (val_green > 255) val_green = 255;
+        if (val_blue > 255) val_blue = 255;
+
+        if (val_red == val_green && val_red == val_blue) {
+            val_red = 255;
+            val_green = 255;
+            val_blue == 255;
+        }//3值相等，当成白色处理
+        else if (val_red > val_green && val_red > val_blue) {
+            if(val_red > 55) //当R值大于此值，说明检测红色
+            {
+                val_red = 255;
+                val_green /= 2;
+                val_blue /= 2;
+            }//否则值不处理
+        }
+        else if (val_green > val_red && val_green > val_blue) {
+            val_green = 255;
+            val_red /= 2;
+            val_blue /= 2;
+        }
+        else if (val_blue > val_red && val_blue > val_green) {
+            val_blue = 255;
+            val_red /= 2;
+            val_green /= 2;
+        }
+    }
+
+    //% blockId=SuperBitV2_Sensor_GetRGBValue block="GetRGBValue|value %value"
+    //% blockGap=20
+    //% weight=98
+    //% color="#0000cd"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    export function GetRGBValue(value: enGetRGB): number {
+        if (!initialized) {
+            initColorI2C();
+        }
+        GetRGB();
+        switch (value) {
+            case enGetRGB.GetValueR:
+                return val_red;
+            case enGetRGB.GetValueG:
+                return val_green;
+            case enGetRGB.GetValueB:
+                return val_blue;
+            default:
+                break;
+        }
+        return 0;
+    }
 }
