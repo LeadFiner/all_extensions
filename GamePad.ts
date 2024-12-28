@@ -8,7 +8,7 @@ load dependency
 // Updated: LeadFiner.
 
 //% color="#C814B8" weight=20 icon="\uf11b"
-namespace eGHBit {
+namespace GamePad {
 
     const PCA9685_ADD = 0x41;
     const MODE1 = 0x00;
@@ -217,31 +217,8 @@ namespace eGHBit {
         buf[4] = (off >> 8) & 0xff;
         pins.i2cWriteBuffer(PCA9685_ADD, buf);
     }
-
-    /**
-     * *****************************************************************
-     * @param index
-     */
-        
-    //% blockId=eGHBit_Vibration block="Vibration|value %value"
-    //% weight=97
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Vibration(value: Motorshock): void {
-        switch (value) {
-            case Motorshock.ON: {
-              setPwm(0, 0, 4095);
-              break;
-            }
-            case Motorshock.OFF: {
-              setPwm(0, 0, 0);
-              break;
-            }
-        }               
-    }
     
-    //% blockId=eGHBit_Rocker block="Rocker|value %value"
+    //% blockId=GamePad_Rocker block="Rocker|value %value"
     //% weight=96
     //% blockGap=10
     //% color="#C814B8"
@@ -284,7 +261,7 @@ namespace eGHBit {
             return false;
     }
     
-    //% blockId=eGHBit_RockerX block="RockerX"
+    //% blockId=GamePad_RockerX block="RockerX"
     //% weight=96
     //% blockGap=10
     //% color="#0080FF"
@@ -293,7 +270,7 @@ namespace eGHBit {
         return pins.analogReadPin(AnalogPin.P1);
     }
     
-    //% blockId=eGHBit_RockerY block="RockerY"
+    //% blockId=GamePad_RockerY block="RockerY"
     //% weight=96
     //% blockGap=10
     //% color="#0080FF"
@@ -302,7 +279,7 @@ namespace eGHBit {
         return pins.analogReadPin(AnalogPin.P2);
     }
     
-    //% blockId=eGHBit_Button block="Button|num %num|value %value"
+    //% blockId=GamePad_Button block="Button|num %num|value %value"
     //% weight=95
     //% blockGap=10
     //% color="#C814B8"
@@ -354,7 +331,25 @@ namespace eGHBit {
         return temp;         
     }
         
-    //% blockId=eGHBit_Music_Handle block="Music_Handle|%index"
+    //% blockId=GamePad_Vibration block="Vibration|value %value"
+    //% weight=97
+    //% blockGap=10
+    //% color="#C814B8"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Vibration(value: Motorshock): void {
+        switch (value) {
+            case Motorshock.ON: {
+              setPwm(0, 0, 4095);
+              break;
+            }
+            case Motorshock.OFF: {
+              setPwm(0, 0, 0);
+              break;
+            }
+        }               
+    }
+        
+    //% blockId=GamePad_Music_Handle block="Music_Handle|%index"
     //% weight=92
     //% blockGap=10
     //% color="#C814B8"
@@ -384,7 +379,7 @@ namespace eGHBit {
         }
     }
     
-    //% blockId=eGHBit_Rotate block="Rotate|value %value"
+    //% blockId=GamePad_Rotate block="Rotate|value %value"
     //% weight=86
     //% blockGap=10
     //% color="#C814B8"
@@ -454,7 +449,7 @@ namespace eGHBit {
         return a;
     }
     
-    //% blockId=eGHBit_Beam block="Beam|value %value"
+    //% blockId=GamePad_Beam block="Beam|value %value"
     //% weight=85
     //% blockGap=10
     //% color="#C814B8"

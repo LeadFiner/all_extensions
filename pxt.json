@@ -9,9 +9,10 @@
     },
     "files": [
         "tm1650.ts",
-        "eGHBit.ts",
+        "GamePad.ts",
         "module_world_color.ts",
-        "SuperBitLibV2.ts",
+        "SuperBitV2_Motor.ts",
+        "SuperBitV2_Sensor.ts",
         "extended.ts",
         "README.md"
     ],
