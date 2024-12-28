@@ -7,7 +7,7 @@ load dependency
 
 // Updated: LeadFiner.
 
-//% color="#ECA40D" weight=30 icon="\uf035"
+//% color="#4080FF" weight=30 icon="\uf085"
 namespace SuperBitV2_Motor {
 
     const PCA9685_ADD = 0x40
