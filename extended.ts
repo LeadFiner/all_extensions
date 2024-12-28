@@ -33,6 +33,6 @@ namespace SuperBitV2 {
         //   - min (0°)   =>  500 us =>  500*4096/20000 (=102).
         //   - max (270°) => 2500 us => 2500*4096/20000 (=512).
         let pwm = Math.map(value, 0, 270, 102, 512);
-        setPwm(num, 0, pwm);
+        SuperBitV2.setPwm(num, 0, pwm);
     }
 }
