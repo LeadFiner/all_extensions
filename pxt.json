@@ -3,15 +3,15 @@
     "description": "All useful extension in a single package.",
     "dependencies": {
         "neopixel": "github:lzty634158/pxt-neopixel",
-        "SuperBitLibV2": "github:YahboomTechnology/SuperBitLibV2.git",
-        "module_world_color": "github:YahboomTechnology/module_world_color",
-        "tm1650": "github:YahboomTechnology/tm1650",
-        "GHBit": "github:lzty634158/GHBit",
         "core": "*",
         "radio": "*",
         "microphone": "*"
     },
     "files": [
+        "tm1650.ts",
+        "GHBit.ts",
+        "module_world_color.ts",
+        "SuperBitLibV2.ts",
         "extended.ts",
         "README.md"
     ],
