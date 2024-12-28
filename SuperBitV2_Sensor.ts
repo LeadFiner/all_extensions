@@ -504,7 +504,6 @@ namespace SuperBitV2_Sensor {
     //% blockId=SuperBitV2_Sensor_GetRGBValue block="GetRGBValue|value %value"
     //% blockGap=20
     //% weight=98
-    //% color="#0000cd"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
     export function GetRGBValue(value: enGetRGB): number {
         if (!initialized) {

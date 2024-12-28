@@ -242,10 +242,9 @@ namespace SuperBitV2_Motor {
         
     }
 
-    //% blockId=SuperBitV2_MotorServo270 block="eServo(270°)|num %num|value %value"
+    //% blockId=SuperBitV2_MotorServo270 block="Servo(270°)|num %num|value %value"
     //% weight=96
     //% blockGap=10
-    //% color="#0080FF"
     //% num.min=1 num.max=8 value.min=0 value.max=270
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
     export function Servo270(num: enServo, value: number): void {

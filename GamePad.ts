@@ -221,7 +221,6 @@ namespace GamePad {
     //% blockId=GamePad_Rocker block="Rocker|value %value"
     //% weight=96
     //% blockGap=10
-    //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function Rocker(value: enRocker): boolean {
 
@@ -264,7 +263,6 @@ namespace GamePad {
     //% blockId=GamePad_RockerX block="RockerX"
     //% weight=96
     //% blockGap=10
-    //% color="#0080FF"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function RockerX() {
         return pins.analogReadPin(AnalogPin.P1);
@@ -273,7 +271,6 @@ namespace GamePad {
     //% blockId=GamePad_RockerY block="RockerY"
     //% weight=96
     //% blockGap=10
-    //% color="#0080FF"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function RockerY() {
         return pins.analogReadPin(AnalogPin.P2);
@@ -282,7 +279,6 @@ namespace GamePad {
     //% blockId=GamePad_Button block="Button|num %num|value %value"
     //% weight=95
     //% blockGap=10
-    //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
     export function Button(num: enButton, value: enButtonState): boolean {
          let temp = false;
@@ -334,7 +330,6 @@ namespace GamePad {
     //% blockId=GamePad_Vibration block="Vibration|value %value"
     //% weight=97
     //% blockGap=10
-    //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
     export function Vibration(value: Motorshock): void {
         switch (value) {
@@ -352,7 +347,6 @@ namespace GamePad {
     //% blockId=GamePad_Music_Handle block="Music_Handle|%index"
     //% weight=92
     //% blockGap=10
-    //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Music_Handle(index: enMusic): void {
         switch (index) {
@@ -382,7 +376,6 @@ namespace GamePad {
     //% blockId=GamePad_Rotate block="Rotate|value %value"
     //% weight=86
     //% blockGap=10
-    //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function Rotate(value: Angle): boolean {
 
@@ -452,7 +445,6 @@ namespace GamePad {
     //% blockId=GamePad_Beam block="Beam|value %value"
     //% weight=85
     //% blockGap=10
-    //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
     export function Beam(value: Beamstate): boolean {
         pins.setPull(DigitalPin.P10, PinPullMode.PullUp);
