@@ -6,6 +6,7 @@ load dependency
 */
 
 // Updated: LeadFiner.
+// https://fontawesome.com/v4/icons/
 
 //% color="#C814B8" weight=25 icon="\uf25a"
 namespace SuperBitV2_Sensor {

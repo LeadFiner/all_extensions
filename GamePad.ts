@@ -6,6 +6,7 @@ load dependency
 */
 
 // Updated: LeadFiner.
+// https://fontawesome.com/v4/icons/
 
 //% color="#C814B8" weight=20 icon="\uf11b"
 namespace GamePad {

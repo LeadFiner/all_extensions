@@ -6,6 +6,7 @@ load dependency
 */
 
 // Updated: LeadFiner.
+// https://fontawesome.com/v4/icons/
 
 //% color="#228B22" weight=30 icon="\uf085"
 namespace SuperBitV2_Motor {

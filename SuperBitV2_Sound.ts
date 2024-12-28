@@ -6,6 +6,7 @@ load dependency
 */
 
 // Updated: LeadFiner.
+// https://fontawesome.com/v4/icons/
 
 //% color="#0DA4EC" weight=30 icon="\uf028"
 namespace SuperBitV2_Sound {
