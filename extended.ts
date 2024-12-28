@@ -6,7 +6,7 @@ namespace GHBit {
     //% blockGap=10
     //% color="#0080FF"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
-    export function RockerX() {
+    export function eRockerX() {
         return pins.analogReadPin(AnalogPin.P1);
     }
     
@@ -15,30 +15,19 @@ namespace GHBit {
     //% blockGap=10
     //% color="#0080FF"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
-    export function RockerY() {
+    export function eRockerY() {
         return pins.analogReadPin(AnalogPin.P2);
     }
 }
 
 namespace SuperBitV2 {
-    export enum enServo {
-        S1 = 0,
-        S2,
-        S3,
-        S4,
-        S5,
-        S6,
-        S7,
-        S8
-    }
-    
     //% blockId=ext_SuperBitV2_Servo270 block="eServo(270°)|num %num|value %value"
     //% weight=96
     //% blockGap=10
     //% color="#0080FF"
     //% num.min=1 num.max=8 value.min=0 value.max=270
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
-    export function Servo270(num: enServo, value: number): void {
+    export function eServo270(num: enServo, value: number): void {
         // Freq=50Hz => 20000 us => 4096 steps.
         // GeekServo:
         //   - min (0°)   =>  500 us =>  500*4096/20000 (=102).
