@@ -1,7 +1,7 @@
 // Extend some existing extensions.
 
-namespace ext_GamePad {
-    //% blockId=ext_GamePad_RockerX block="RockerX"
+namespace GHBit {
+    //% blockId=ext_GamePad_RockerX block="eRockerX"
     //% weight=96
     //% blockGap=10
     //% color="#0080FF"
@@ -10,7 +10,7 @@ namespace ext_GamePad {
         return pins.analogReadPin(AnalogPin.P1);
     }
     
-    //% blockId=ext_GamePad_RockerY block="RockerY"
+    //% blockId=ext_GamePad_RockerY block="eRockerY"
     //% weight=96
     //% blockGap=10
     //% color="#0080FF"
@@ -20,7 +20,7 @@ namespace ext_GamePad {
     }
 }
 
-namespace ext_SuperBitV2 {
+namespace SuperBitV2 {
     export enum enServo {
         S1 = 0,
         S2,
@@ -32,7 +32,7 @@ namespace ext_SuperBitV2 {
         S8
     }
     
-    //% blockId=ext_SuperBitV2_Servo270 block="Servo(270°)|num %num|value %value"
+    //% blockId=ext_SuperBitV2_Servo270 block="eServo(270°)|num %num|value %value"
     //% weight=96
     //% blockGap=10
     //% color="#0080FF"
@@ -44,6 +44,6 @@ namespace ext_SuperBitV2 {
         //   - min (0°)   =>  500 us =>  500*4096/20000 (=102).
         //   - max (270°) => 2500 us => 2500*4096/20000 (=512).
         let pwm = Math.map(value, 0, 270, 102, 512);
-        SuperBitV2.setPwm(num, 0, pwm);
+        setPwm(num, 0, pwm);
     }
 }
