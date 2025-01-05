@@ -327,6 +327,66 @@ namespace GamePad {
         }
         return temp;         
     }
+
+    //% blockId=GamePad_ButtonR block="ButtonR"
+    //% weight=95
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    export function ButtonR() {
+        pins.setPull(DigitalPin.P8, PinPullMode.PullUp);
+        if (pins.digitalReadPin(DigitalPin.P8)==1) {
+            return 0;
+        }
+        return 1
+    }
+
+    //% blockId=GamePad_ButtonB1 block="ButtonB1"
+    //% weight=95
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    export function ButtonB1() {
+        pins.setPull(DigitalPin.P13, PinPullMode.PullUp);
+        if (pins.digitalReadPin(DigitalPin.P13) == 1) {
+            return 0;
+        }
+        return 1
+    }
+
+    //% blockId=GamePad_ButtonB2 block="ButtonB2"
+    //% weight=95
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    export function ButtonB2() {
+        pins.setPull(DigitalPin.P14, PinPullMode.PullUp);
+        if (pins.digitalReadPin(DigitalPin.P14) == 1) {
+            return 0;
+        }
+        return 1
+    }
+
+    //% blockId=GamePad_ButtonB3 block="ButtonB3"
+    //% weight=95
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    export function ButtonB3() {
+        pins.setPull(DigitalPin.P15, PinPullMode.PullUp);
+        if (pins.digitalReadPin(DigitalPin.P15) == 1) {
+            return 0;
+        }
+        return 1
+    }
+
+    //% blockId=GamePad_ButtonB4 block="ButtonB4"
+    //% weight=95
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+    export function ButtonB4() {
+        pins.setPull(DigitalPin.P16, PinPullMode.PullUp);
+        if (pins.digitalReadPin(DigitalPin.P16) == 1) {
+            return 0;
+        }
+        return 1
+    }
         
     //% blockId=GamePad_Vibration block="Vibration|value %value"
     //% weight=97
