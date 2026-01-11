@@ -2,7 +2,7 @@
     "name": "all_in_one",
     "description": "All useful extension in a single package.",
     "dependencies": {
-        "neopixel": "github:lzty634158/pxt-neopixel",
+        "neopixel": "github:lzty634158/pxt-neopixel#71e694ace493be31a0e27f3fd567b7a00dfb5e01",
         "core": "*",
         "radio": "*",
         "microphone": "*"
@@ -21,7 +21,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "7.0.51",
+        "target": "8.0.18",
         "targetId": "microbit"
     },
     "supportedTargets": [
